@@ -25,11 +25,20 @@
 
 #define PD_SCK                    28    
 #define DOUT                      31    
+///////////////////////////////////////////////////
+typedef enum
+{
+    SIMPLE_TIMER_STATE_IDLE = 0,
+    SIMPLE_TIMER_STATE_INITIALIZED,
+    SIMPLE_TIMER_STATE_STOPPED,
+    SIMPLE_TIMER_STATE_STARTED
+}simple_timer_states_t;
 
+
+//////////////////////////////////////////////////
 const nrf_drv_rtc_t rtc = NRF_DRV_RTC_INSTANCE(0);
-
 static const nrf_drv_timer_t m_timer0 = NRF_DRV_TIMER_INSTANCE(0);
-
+static simple_timer_states_t              m_simple_timer_state       = SIMPLE_TIMER_STATE_IDLE;
 
 static nrf_ppi_channel_t m_ppi_channel1;
 static nrf_ppi_channel_t m_ppi_channel2;
@@ -42,6 +51,7 @@ static void timer0_event_handler(nrf_timer_event_t event_type, void * p_context)
     ++m_counter;
     if(m_counter==50){
         nrf_drv_timer_pause(&m_timer0);
+        m_simple_timer_state = SIMPLE_TIMER_STATE_STOPPED;
         buffer = buffer ^ 0x800000;
         b_counter=1;        
         }
@@ -78,7 +88,7 @@ static void lfclk_config(void)
 
 static void gpiote_evt_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {
-
+    nrf_drv_gpiote_in_event_disable(DOUT);
 }
 
 static void led_blinking_setup()
@@ -142,7 +152,12 @@ APP_TIMER_DEF(m_repeated_timer_id);
 static void repeated_timer_handler(void * p_context)
 {
     nrf_drv_gpiote_out_toggle(LED_2);
-    //nrf_drv_timer_enable(&m_timer0);
+    if(m_simple_timer_state == SIMPLE_TIMER_STATE_STOPPED){
+        nrf_drv_timer_resume(&m_timer0);
+        nrf_drv_gpiote_out_toggle(LED_1);
+        m_simple_timer_state = SIMPLE_TIMER_STATE_STARTED;
+    } 
+    
 }
 /**@brief Create timers.
  */
@@ -174,14 +189,12 @@ int main(void)
     lfclk_config();
     app_timer_init();
     create_timers();
-    err_code = app_timer_start(m_repeated_timer_id, APP_TIMER_TICKS(10000), NULL);
- 
+    
     timer0_init(); // Timer used to increase m_counter every 100ms.
-
-
     // Start clock.
-   nrf_drv_timer_enable(&m_timer0);
-
+    nrf_drv_timer_enable(&m_timer0);
+    err_code = app_timer_start(m_repeated_timer_id, APP_TIMER_TICKS(10000), NULL);
+    APP_ERROR_CHECK(err_code);
 
     while (true)
     {
@@ -196,7 +209,7 @@ int main(void)
             NRF_LOG_INFO("buffer %u \n",buffer);
             NRF_LOG_FLUSH();
             b_counter=0;
-
+            m_counter = 0;
         }
         // __SEV();
         // __WFE();

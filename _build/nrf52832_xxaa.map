@@ -3567,8 +3567,6 @@ Discarded input sections
                 0x00000000       0x20 _build/nrf52832_xxaa/nrfx_gpiote.c.o
  .text.nrfx_gpiote_clr_task_trigger
                 0x00000000       0x20 _build/nrf52832_xxaa/nrfx_gpiote.c.o
- .text.nrfx_gpiote_in_event_disable
-                0x00000000       0x64 _build/nrf52832_xxaa/nrfx_gpiote.c.o
  .text.nrfx_gpiote_in_uninit
                 0x00000000       0xb4 _build/nrf52832_xxaa/nrfx_gpiote.c.o
  .text.nrfx_gpiote_in_is_set
@@ -3873,8 +3871,6 @@ Discarded input sections
                 0x00000000       0x1c _build/nrf52832_xxaa/nrfx_timer.c.o
  .text.nrfx_timer_is_enabled
                 0x00000000       0x20 _build/nrf52832_xxaa/nrfx_timer.c.o
- .text.nrfx_timer_resume
-                0x00000000        0x8 _build/nrf52832_xxaa/nrfx_timer.c.o
  .text.nrfx_timer_clear
                 0x00000000        0x8 _build/nrf52832_xxaa/nrfx_timer.c.o
  .text.nrfx_timer_increment
@@ -4491,7 +4487,6 @@ Discarded input sections
  .data          0x00000000        0x0 _build/nrf52832_xxaa/main.c.o
  .bss           0x00000000        0x0 _build/nrf52832_xxaa/main.c.o
  .rodata.rtc    0x00000000        0x8 _build/nrf52832_xxaa/main.c.o
- .debug_macro   0x00000000      0xac6 _build/nrf52832_xxaa/main.c.o
  .debug_macro   0x00000000       0x22 _build/nrf52832_xxaa/main.c.o
  .debug_macro   0x00000000       0x56 _build/nrf52832_xxaa/main.c.o
  .debug_macro   0x00000000       0x51 _build/nrf52832_xxaa/main.c.o
@@ -4659,7 +4654,7 @@ RAM              0x20000000         0x00010000         xrw
 Linker script and memory map
 
 
-.text           0x00000000     0x4234
+.text           0x00000000     0x42d4
  *(.isr_vector)
  .isr_vector    0x00000000      0x200 _build/nrf52832_xxaa/gcc_startup_nrf52.S.o
                 0x00000000                __isr_vector
@@ -4900,105 +4895,111 @@ Linker script and memory map
  .text.nrfx_gpiote_in_event_enable
                 0x000026d0       0xbc _build/nrf52832_xxaa/nrfx_gpiote.c.o
                 0x000026d0                nrfx_gpiote_in_event_enable
+ .text.nrfx_gpiote_in_event_disable
+                0x0000278c       0x64 _build/nrf52832_xxaa/nrfx_gpiote.c.o
+                0x0000278c                nrfx_gpiote_in_event_disable
  .text.GPIOTE_IRQHandler
-                0x0000278c      0x300 _build/nrf52832_xxaa/nrfx_gpiote.c.o
-                0x0000278c                GPIOTE_IRQHandler
+                0x000027f0      0x300 _build/nrf52832_xxaa/nrfx_gpiote.c.o
+                0x000027f0                GPIOTE_IRQHandler
  .text.nrfx_ppi_channel_alloc
-                0x00002a8c       0x68 _build/nrf52832_xxaa/nrfx_ppi.c.o
-                0x00002a8c                nrfx_ppi_channel_alloc
+                0x00002af0       0x68 _build/nrf52832_xxaa/nrfx_ppi.c.o
+                0x00002af0                nrfx_ppi_channel_alloc
  .text.nrfx_ppi_channel_assign
-                0x00002af4       0x4c _build/nrf52832_xxaa/nrfx_ppi.c.o
-                0x00002af4                nrfx_ppi_channel_assign
+                0x00002b58       0x4c _build/nrf52832_xxaa/nrfx_ppi.c.o
+                0x00002b58                nrfx_ppi_channel_assign
  .text.nrfx_ppi_channel_enable
-                0x00002b40       0x2c _build/nrf52832_xxaa/nrfx_ppi.c.o
-                0x00002b40                nrfx_ppi_channel_enable
+                0x00002ba4       0x2c _build/nrf52832_xxaa/nrfx_ppi.c.o
+                0x00002ba4                nrfx_ppi_channel_enable
  .text.nrfx_timer_init
-                0x00002b6c       0xf0 _build/nrf52832_xxaa/nrfx_timer.c.o
-                0x00002b6c                nrfx_timer_init
+                0x00002bd0       0xf0 _build/nrf52832_xxaa/nrfx_timer.c.o
+                0x00002bd0                nrfx_timer_init
  .text.nrfx_timer_enable
-                0x00002c5c       0x1c _build/nrf52832_xxaa/nrfx_timer.c.o
-                0x00002c5c                nrfx_timer_enable
+                0x00002cc0       0x1c _build/nrf52832_xxaa/nrfx_timer.c.o
+                0x00002cc0                nrfx_timer_enable
+ .text.nrfx_timer_resume
+                0x00002cdc        0x8 _build/nrf52832_xxaa/nrfx_timer.c.o
+                0x00002cdc                nrfx_timer_resume
  .text.nrfx_timer_pause
-                0x00002c78        0x8 _build/nrf52832_xxaa/nrfx_timer.c.o
-                0x00002c78                nrfx_timer_pause
+                0x00002ce4        0x8 _build/nrf52832_xxaa/nrfx_timer.c.o
+                0x00002ce4                nrfx_timer_pause
  .text.nrfx_timer_extended_compare
-                0x00002c80       0x60 _build/nrf52832_xxaa/nrfx_timer.c.o
-                0x00002c80                nrfx_timer_extended_compare
+                0x00002cec       0x60 _build/nrf52832_xxaa/nrfx_timer.c.o
+                0x00002cec                nrfx_timer_extended_compare
  .text.TIMER0_IRQHandler
-                0x00002ce0       0x58 _build/nrf52832_xxaa/nrfx_timer.c.o
-                0x00002ce0                TIMER0_IRQHandler
+                0x00002d4c       0x58 _build/nrf52832_xxaa/nrfx_timer.c.o
+                0x00002d4c                TIMER0_IRQHandler
  .text.TIMER1_IRQHandler
-                0x00002d38       0x58 _build/nrf52832_xxaa/nrfx_timer.c.o
-                0x00002d38                TIMER1_IRQHandler
+                0x00002da4       0x58 _build/nrf52832_xxaa/nrfx_timer.c.o
+                0x00002da4                TIMER1_IRQHandler
  .text.TIMER2_IRQHandler
-                0x00002d90       0x58 _build/nrf52832_xxaa/nrfx_timer.c.o
-                0x00002d90                TIMER2_IRQHandler
+                0x00002dfc       0x58 _build/nrf52832_xxaa/nrfx_timer.c.o
+                0x00002dfc                TIMER2_IRQHandler
  .text.UARTE0_UART0_IRQHandler
-                0x00002de8        0xc _build/nrf52832_xxaa/nrfx_prs.c.o
-                0x00002de8                UARTE0_UART0_IRQHandler
+                0x00002e54        0xc _build/nrf52832_xxaa/nrfx_prs.c.o
+                0x00002e54                UARTE0_UART0_IRQHandler
  .text.nrfx_prs_acquire
-                0x00002df4       0x3c _build/nrf52832_xxaa/nrfx_prs.c.o
-                0x00002df4                nrfx_prs_acquire
+                0x00002e60       0x3c _build/nrf52832_xxaa/nrfx_prs.c.o
+                0x00002e60                nrfx_prs_acquire
  .text.nrfx_prs_release
-                0x00002e30       0x18 _build/nrf52832_xxaa/nrfx_prs.c.o
-                0x00002e30                nrfx_prs_release
+                0x00002e9c       0x18 _build/nrf52832_xxaa/nrfx_prs.c.o
+                0x00002e9c                nrfx_prs_release
  .text.nrfx_uart_0_irq_handler
-                0x00002e48      0x1c4 _build/nrf52832_xxaa/nrfx_uart.c.o
-                0x00002e48                nrfx_uart_0_irq_handler
+                0x00002eb4      0x1c4 _build/nrf52832_xxaa/nrfx_uart.c.o
+                0x00002eb4                nrfx_uart_0_irq_handler
  .text.nrfx_uart_init
-                0x0000300c      0x19c _build/nrf52832_xxaa/nrfx_uart.c.o
-                0x0000300c                nrfx_uart_init
+                0x00003078      0x19c _build/nrf52832_xxaa/nrfx_uart.c.o
+                0x00003078                nrfx_uart_init
  .text.nrfx_uart_uninit
-                0x000031a8       0xcc _build/nrf52832_xxaa/nrfx_uart.c.o
-                0x000031a8                nrfx_uart_uninit
+                0x00003214       0xcc _build/nrf52832_xxaa/nrfx_uart.c.o
+                0x00003214                nrfx_uart_uninit
  .text.nrfx_uart_tx
-                0x00003274       0xd0 _build/nrf52832_xxaa/nrfx_uart.c.o
-                0x00003274                nrfx_uart_tx
+                0x000032e0       0xd0 _build/nrf52832_xxaa/nrfx_uart.c.o
+                0x000032e0                nrfx_uart_tx
  .text.nrfx_uarte_0_irq_handler
-                0x00003344      0x168 _build/nrf52832_xxaa/nrfx_uarte.c.o
-                0x00003344                nrfx_uarte_0_irq_handler
+                0x000033b0      0x168 _build/nrf52832_xxaa/nrfx_uarte.c.o
+                0x000033b0                nrfx_uarte_0_irq_handler
  .text.nrfx_uarte_init
-                0x000034ac      0x1d4 _build/nrf52832_xxaa/nrfx_uarte.c.o
-                0x000034ac                nrfx_uarte_init
+                0x00003518      0x1d4 _build/nrf52832_xxaa/nrfx_uarte.c.o
+                0x00003518                nrfx_uarte_init
  .text.nrfx_uarte_uninit
-                0x00003680      0x108 _build/nrf52832_xxaa/nrfx_uarte.c.o
-                0x00003680                nrfx_uarte_uninit
+                0x000036ec      0x108 _build/nrf52832_xxaa/nrfx_uarte.c.o
+                0x000036ec                nrfx_uarte_uninit
  .text.nrfx_uarte_tx
-                0x00003788       0xb4 _build/nrf52832_xxaa/nrfx_uarte.c.o
-                0x00003788                nrfx_uarte_tx
+                0x000037f4       0xb4 _build/nrf52832_xxaa/nrfx_uarte.c.o
+                0x000037f4                nrfx_uarte_tx
  .text.gpiote_evt_handler
-                0x0000383c        0x4 _build/nrf52832_xxaa/main.c.o
+                0x000038a8        0x8 _build/nrf52832_xxaa/main.c.o
  .text.repeated_timer_handler
-                0x00003840        0x8 _build/nrf52832_xxaa/main.c.o
+                0x000038b0       0x2c _build/nrf52832_xxaa/main.c.o
  .text.timer0_event_handler
-                0x00003848       0x60 _build/nrf52832_xxaa/main.c.o
+                0x000038dc       0x6c _build/nrf52832_xxaa/main.c.o
  .text.startup.main
-                0x000038a8      0x200 _build/nrf52832_xxaa/main.c.o
-                0x000038a8                main
+                0x00003948      0x20c _build/nrf52832_xxaa/main.c.o
+                0x00003948                main
  .text.SystemInit
-                0x00003aa8      0x3b4 _build/nrf52832_xxaa/system_nrf52.c.o
-                0x00003aa8                SystemInit
- .text.exit     0x00003e5c       0x28 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-exit.o)
-                0x00003e5c                exit
+                0x00003b54      0x3b4 _build/nrf52832_xxaa/system_nrf52.c.o
+                0x00003b54                SystemInit
+ .text.exit     0x00003f08       0x28 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-exit.o)
+                0x00003f08                exit
  .text.__libc_init_array
-                0x00003e84       0x48 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-init.o)
-                0x00003e84                __libc_init_array
- .text.memcpy   0x00003ecc       0x1c c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-memcpy-stub.o)
-                0x00003ecc                memcpy
- .text.memset   0x00003ee8       0x10 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-memset.o)
-                0x00003ee8                memset
- .text          0x00003ef8       0x10 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-strlen.o)
-                0x00003ef8                strlen
- .text._exit    0x00003f08        0x4 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libnosys.a(_exit.o)
-                0x00003f08                _exit
+                0x00003f30       0x48 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-init.o)
+                0x00003f30                __libc_init_array
+ .text.memcpy   0x00003f78       0x1c c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-memcpy-stub.o)
+                0x00003f78                memcpy
+ .text.memset   0x00003f94       0x10 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-memset.o)
+                0x00003f94                memset
+ .text          0x00003fa4       0x10 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-strlen.o)
+                0x00003fa4                strlen
+ .text._exit    0x00003fb4        0x4 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libnosys.a(_exit.o)
+                0x00003fb4                _exit
  *(.init)
- .init          0x00003f0c        0x4 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crti.o
-                0x00003f0c                _init
- .init          0x00003f10        0x8 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crtn.o
+ .init          0x00003fb8        0x4 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crti.o
+                0x00003fb8                _init
+ .init          0x00003fbc        0x8 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crtn.o
  *(.fini)
- .fini          0x00003f18        0x4 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crti.o
-                0x00003f18                _fini
- .fini          0x00003f1c        0x8 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crtn.o
+ .fini          0x00003fc4        0x4 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crti.o
+                0x00003fc4                _fini
+ .fini          0x00003fc8        0x8 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crtn.o
  *crtbegin.o(.ctors)
  *crtbegin?.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
@@ -5010,169 +5011,169 @@ Linker script and memory map
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
  *(.rodata*)
- .rodata        0x00003f24       0x20 _build/nrf52832_xxaa/nrf_log_backend_uart.c.o
+ .rodata        0x00003fd0       0x20 _build/nrf52832_xxaa/nrf_log_backend_uart.c.o
  .rodata.nrf_log_backend_uart_api
-                0x00003f44        0xc _build/nrf52832_xxaa/nrf_log_backend_uart.c.o
-                0x00003f44                nrf_log_backend_uart_api
+                0x00003ff0        0xc _build/nrf52832_xxaa/nrf_log_backend_uart.c.o
+                0x00003ff0                nrf_log_backend_uart_api
  .rodata.str1.4
-                0x00003f50       0x11 _build/nrf52832_xxaa/nrf_log_default_backends.c.o
- *fill*         0x00003f61        0x3 
+                0x00003ffc       0x11 _build/nrf52832_xxaa/nrf_log_default_backends.c.o
+ *fill*         0x0000400d        0x3 
  .rodata.nrf_log_frontend_dequeue.str1.4
-                0x00003f64       0x11 _build/nrf52832_xxaa/nrf_log_frontend.c.o
- *fill*         0x00003f75        0x3 
+                0x00004010       0x11 _build/nrf52832_xxaa/nrf_log_frontend.c.o
+ *fill*         0x00004021        0x3 
  .rodata.str1.4
-                0x00003f78        0x4 _build/nrf52832_xxaa/nrf_log_frontend.c.o
+                0x00004024        0x4 _build/nrf52832_xxaa/nrf_log_frontend.c.o
  .rodata.m_log_push_ringbuf
-                0x00003f7c        0xc _build/nrf52832_xxaa/nrf_log_frontend.c.o
+                0x00004028        0xc _build/nrf52832_xxaa/nrf_log_frontend.c.o
  .rodata.prefix_process.str1.4
-                0x00003f88       0x36 _build/nrf52832_xxaa/nrf_log_str_formatter.c.o
- *fill*         0x00003fbe        0x2 
+                0x00004034       0x36 _build/nrf52832_xxaa/nrf_log_str_formatter.c.o
+ *fill*         0x0000406a        0x2 
  .rodata.nrf_log_std_entry_process.str1.4
-                0x00003fc0        0x3 _build/nrf52832_xxaa/nrf_log_str_formatter.c.o
- *fill*         0x00003fc3        0x1 
+                0x0000406c        0x3 _build/nrf52832_xxaa/nrf_log_str_formatter.c.o
+ *fill*         0x0000406f        0x1 
  .rodata.nrf_log_hexdump_entry_process.str1.4
-                0x00003fc4       0x13 _build/nrf52832_xxaa/nrf_log_str_formatter.c.o
+                0x00004070       0x13 _build/nrf52832_xxaa/nrf_log_str_formatter.c.o
                                  0x16 (size before relaxing)
- *fill*         0x00003fd7        0x1 
+ *fill*         0x00004083        0x1 
  .rodata.str1.4
-                0x00003fd8       0x56 _build/nrf52832_xxaa/nrf_log_str_formatter.c.o
- *fill*         0x0000402e        0x2 
+                0x00004084       0x56 _build/nrf52832_xxaa/nrf_log_str_formatter.c.o
+ *fill*         0x000040da        0x2 
  .rodata.m_colors
-                0x00004030       0x24 _build/nrf52832_xxaa/nrf_log_str_formatter.c.o
+                0x000040dc       0x24 _build/nrf52832_xxaa/nrf_log_str_formatter.c.o
  .rodata.severity_names
-                0x00004054       0x14 _build/nrf52832_xxaa/nrf_log_str_formatter.c.o
+                0x00004100       0x14 _build/nrf52832_xxaa/nrf_log_str_formatter.c.o
  .rodata.app_error_fault_handler.str1.4
-                0x00004068       0x19 _build/nrf52832_xxaa/app_error_weak.c.o
- *fill*         0x00004081        0xf 
+                0x00004114       0x19 _build/nrf52832_xxaa/app_error_weak.c.o
+ *fill*         0x0000412d        0x3 
  .rodata.delay_machine_code.8426
-                0x00004090        0x6 _build/nrf52832_xxaa/app_timer.c.o
- *fill*         0x00004096        0x2 
+                0x00004130        0x6 _build/nrf52832_xxaa/app_timer.c.o
+ *fill*         0x00004136        0x2 
  .rodata._aV2C.7510
-                0x00004098       0x10 _build/nrf52832_xxaa/nrf_fprintf_format.c.o
+                0x00004138       0x10 _build/nrf52832_xxaa/nrf_fprintf_format.c.o
  .rodata.str1.4
-                0x000040a8        0x6 _build/nrf52832_xxaa/nrf_drv_clock.c.o
- *fill*         0x000040ae        0x2 
+                0x00004148        0x6 _build/nrf52832_xxaa/nrf_drv_clock.c.o
+ *fill*         0x0000414e        0x2 
  .rodata.str1.4
-                0x000040b0        0x6 _build/nrf52832_xxaa/nrfx_clock.c.o
- *fill*         0x000040b6        0x2 
+                0x00004150        0x6 _build/nrf52832_xxaa/nrfx_clock.c.o
+ *fill*         0x00004156        0x2 
  .rodata.str1.4
-                0x000040b8        0x4 _build/nrf52832_xxaa/nrfx_rtc.c.o
+                0x00004158        0x4 _build/nrf52832_xxaa/nrfx_rtc.c.o
  .rodata.str1.4
-                0x000040bc        0x7 _build/nrf52832_xxaa/nrfx_gpiote.c.o
- *fill*         0x000040c3        0x1 
+                0x0000415c        0x7 _build/nrf52832_xxaa/nrfx_gpiote.c.o
+ *fill*         0x00004163        0x1 
  .rodata.str1.4
-                0x000040c4        0x4 _build/nrf52832_xxaa/nrfx_ppi.c.o
+                0x00004164        0x4 _build/nrf52832_xxaa/nrfx_ppi.c.o
  .rodata.str1.4
-                0x000040c8        0x6 _build/nrf52832_xxaa/nrfx_timer.c.o
- *fill*         0x000040ce        0x2 
+                0x00004168        0x6 _build/nrf52832_xxaa/nrfx_timer.c.o
+ *fill*         0x0000416e        0x2 
  .rodata.str1.4
-                0x000040d0        0x4 _build/nrf52832_xxaa/nrfx_prs.c.o
+                0x00004170        0x4 _build/nrf52832_xxaa/nrfx_prs.c.o
  .rodata.str1.4
-                0x000040d4        0x5 _build/nrf52832_xxaa/nrfx_uart.c.o
- *fill*         0x000040d9        0x3 
+                0x00004174        0x5 _build/nrf52832_xxaa/nrfx_uart.c.o
+ *fill*         0x00004179        0x3 
  .rodata.str1.4
-                0x000040dc        0x6 _build/nrf52832_xxaa/nrfx_uarte.c.o
- *fill*         0x000040e2        0x2 
+                0x0000417c        0x6 _build/nrf52832_xxaa/nrfx_uarte.c.o
+ *fill*         0x00004182        0x2 
  .rodata.main.str1.4
-                0x000040e4       0x34 _build/nrf52832_xxaa/main.c.o
- .rodata        0x00004118        0x3 _build/nrf52832_xxaa/main.c.o
- *fill*         0x0000411b        0x1 
+                0x00004184       0x34 _build/nrf52832_xxaa/main.c.o
+ .rodata        0x000041b8        0x3 _build/nrf52832_xxaa/main.c.o
+ *fill*         0x000041bb        0x1 
  .rodata.m_repeated_timer_id
-                0x0000411c        0x4 _build/nrf52832_xxaa/main.c.o
+                0x000041bc        0x4 _build/nrf52832_xxaa/main.c.o
  .rodata.m_timer0
-                0x00004120        0x8 _build/nrf52832_xxaa/main.c.o
+                0x000041c0        0x8 _build/nrf52832_xxaa/main.c.o
  .rodata._ctype_
-                0x00004128      0x101 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-ctype_.o)
-                0x00004128                _ctype_
- *fill*         0x00004229        0x3 
+                0x000041c8      0x101 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-ctype_.o)
+                0x000041c8                _ctype_
+ *fill*         0x000042c9        0x3 
  .rodata._global_impure_ptr
-                0x0000422c        0x4 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-impure.o)
-                0x0000422c                _global_impure_ptr
+                0x000042cc        0x4 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-impure.o)
+                0x000042cc                _global_impure_ptr
  *(.eh_frame*)
- .eh_frame      0x00004230        0x0 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crtbegin.o
- .eh_frame      0x00004230        0x4 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crtend.o
+ .eh_frame      0x000042d0        0x0 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .eh_frame      0x000042d0        0x4 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crtend.o
 
-.glue_7         0x00004234        0x0
- .glue_7        0x00004234        0x0 linker stubs
+.glue_7         0x000042d4        0x0
+ .glue_7        0x000042d4        0x0 linker stubs
 
-.glue_7t        0x00004234        0x0
- .glue_7t       0x00004234        0x0 linker stubs
+.glue_7t        0x000042d4        0x0
+ .glue_7t       0x000042d4        0x0 linker stubs
 
-.vfp11_veneer   0x00004234        0x0
- .vfp11_veneer  0x00004234        0x0 linker stubs
+.vfp11_veneer   0x000042d4        0x0
+ .vfp11_veneer  0x000042d4        0x0 linker stubs
 
-.v4_bx          0x00004234        0x0
- .v4_bx         0x00004234        0x0 linker stubs
+.v4_bx          0x000042d4        0x0
+ .v4_bx         0x000042d4        0x0 linker stubs
 
-.iplt           0x00004234        0x0
- .iplt          0x00004234        0x0 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+.iplt           0x000042d4        0x0
+ .iplt          0x000042d4        0x0 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crtbegin.o
 
 .mem_section_dummy_rom
 
 .log_const_data
-                0x00004234       0x50
-                0x00004234                PROVIDE (__start_log_const_data = .)
+                0x000042d4       0x50
+                0x000042d4                PROVIDE (__start_log_const_data = .)
  *(SORT_BY_NAME(.log_const_data*))
  .log_const_data_CLOCK
-                0x00004234        0x8 _build/nrf52832_xxaa/nrfx_clock.c.o
-                0x00004234                m_nrf_log_CLOCK_logs_data_const
+                0x000042d4        0x8 _build/nrf52832_xxaa/nrfx_clock.c.o
+                0x000042d4                m_nrf_log_CLOCK_logs_data_const
  .log_const_data_GPIOTE
-                0x0000423c        0x8 _build/nrf52832_xxaa/nrfx_gpiote.c.o
-                0x0000423c                m_nrf_log_GPIOTE_logs_data_const
+                0x000042dc        0x8 _build/nrf52832_xxaa/nrfx_gpiote.c.o
+                0x000042dc                m_nrf_log_GPIOTE_logs_data_const
  .log_const_data_PPI
-                0x00004244        0x8 _build/nrf52832_xxaa/nrfx_ppi.c.o
-                0x00004244                m_nrf_log_PPI_logs_data_const
+                0x000042e4        0x8 _build/nrf52832_xxaa/nrfx_ppi.c.o
+                0x000042e4                m_nrf_log_PPI_logs_data_const
  .log_const_data_PRS
-                0x0000424c        0x8 _build/nrf52832_xxaa/nrfx_prs.c.o
-                0x0000424c                m_nrf_log_PRS_logs_data_const
+                0x000042ec        0x8 _build/nrf52832_xxaa/nrfx_prs.c.o
+                0x000042ec                m_nrf_log_PRS_logs_data_const
  .log_const_data_RTC
-                0x00004254        0x8 _build/nrf52832_xxaa/nrfx_rtc.c.o
-                0x00004254                m_nrf_log_RTC_logs_data_const
+                0x000042f4        0x8 _build/nrf52832_xxaa/nrfx_rtc.c.o
+                0x000042f4                m_nrf_log_RTC_logs_data_const
  .log_const_data_TIMER
-                0x0000425c        0x8 _build/nrf52832_xxaa/nrfx_timer.c.o
-                0x0000425c                m_nrf_log_TIMER_logs_data_const
+                0x000042fc        0x8 _build/nrf52832_xxaa/nrfx_timer.c.o
+                0x000042fc                m_nrf_log_TIMER_logs_data_const
  .log_const_data_UART
-                0x00004264        0x8 _build/nrf52832_xxaa/nrfx_uart.c.o
-                0x00004264                m_nrf_log_UART_logs_data_const
+                0x00004304        0x8 _build/nrf52832_xxaa/nrfx_uart.c.o
+                0x00004304                m_nrf_log_UART_logs_data_const
  .log_const_data_UARTE
-                0x0000426c        0x8 _build/nrf52832_xxaa/nrfx_uarte.c.o
-                0x0000426c                m_nrf_log_UARTE_logs_data_const
+                0x0000430c        0x8 _build/nrf52832_xxaa/nrfx_uarte.c.o
+                0x0000430c                m_nrf_log_UARTE_logs_data_const
  .log_const_data_app
-                0x00004274        0x8 _build/nrf52832_xxaa/nrf_log_frontend.c.o
-                0x00004274                m_nrf_log_app_logs_data_const
+                0x00004314        0x8 _build/nrf52832_xxaa/nrf_log_frontend.c.o
+                0x00004314                m_nrf_log_app_logs_data_const
  .log_const_data_clock
-                0x0000427c        0x8 _build/nrf52832_xxaa/nrf_drv_clock.c.o
-                0x0000427c                m_nrf_log_clock_logs_data_const
-                0x00004284                PROVIDE (__stop_log_const_data = .)
+                0x0000431c        0x8 _build/nrf52832_xxaa/nrf_drv_clock.c.o
+                0x0000431c                m_nrf_log_clock_logs_data_const
+                0x00004324                PROVIDE (__stop_log_const_data = .)
 
-.log_backends   0x00004284       0x10
+.log_backends   0x00004324       0x10
                 [!provide]                PROVIDE (__start_log_backends = .)
  *(SORT_BY_NAME(.log_backends*))
- .log_backends  0x00004284       0x10 _build/nrf52832_xxaa/nrf_log_default_backends.c.o
+ .log_backends  0x00004324       0x10 _build/nrf52832_xxaa/nrf_log_default_backends.c.o
                 [!provide]                PROVIDE (__stop_log_backends = .)
 
-.nrf_balloc     0x00004294       0x14
+.nrf_balloc     0x00004334       0x14
                 [!provide]                PROVIDE (__start_nrf_balloc = .)
  *(.nrf_balloc)
- .nrf_balloc    0x00004294       0x14 _build/nrf52832_xxaa/nrf_log_frontend.c.o
-                0x00004294                log_mempool
+ .nrf_balloc    0x00004334       0x14 _build/nrf52832_xxaa/nrf_log_frontend.c.o
+                0x00004334                log_mempool
                 [!provide]                PROVIDE (__stop_nrf_balloc = .)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x000042a8                __exidx_start = .
+                0x00004348                __exidx_start = .
 
-.ARM.exidx      0x000042a8        0x8
+.ARM.exidx      0x00004348        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x000042a8        0x8 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
+ .ARM.exidx     0x00004348        0x8 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
                                  0x10 (size before relaxing)
-                0x000042b0                __exidx_end = .
-                0x000042b0                __etext = .
+                0x00004350                __exidx_end = .
+                0x00004350                __etext = .
 
-.rel.dyn        0x000042b0        0x0
- .rel.iplt      0x000042b0        0x0 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+.rel.dyn        0x00004350        0x0
+ .rel.iplt      0x00004350        0x0 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.data           0x20000000       0x88 load address 0x000042b0
+.data           0x20000000       0x88 load address 0x00004350
                 0x20000000                __data_start__ = .
  *(vtable)
  *(.data*)
@@ -5266,7 +5267,7 @@ LOAD c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../l
 LOAD c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libnosys.a
 END GROUP
 
-.igot.plt       0x20000088        0x0 load address 0x00004338
+.igot.plt       0x20000088        0x0 load address 0x000043d8
  .igot.plt      0x20000088        0x0 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m+fp/hard/crtbegin.o
                 0x20000088                . = ALIGN (0x4)
 
@@ -5284,7 +5285,7 @@ END GROUP
  *(SORT_BY_NAME(.log_filter_data*))
                 [!provide]                PROVIDE (__stop_log_filter_data = .)
 
-.bss            0x20000088      0x854 load address 0x00004338
+.bss            0x20000088      0x854 load address 0x000043d8
                 0x20000088                . = ALIGN (0x4)
                 0x20000088                __bss_start__ = .
  *(.bss*)
@@ -5362,10 +5363,12 @@ END GROUP
                 0x200008b0        0x4 _build/nrf52832_xxaa/main.c.o
  .bss.m_repeated_timer_id_data
                 0x200008b4       0x20 _build/nrf52832_xxaa/main.c.o
- .bss.ppi_channel3
+ .bss.m_simple_timer_state
                 0x200008d4        0x1 _build/nrf52832_xxaa/main.c.o
+ .bss.ppi_channel3
+                0x200008d5        0x1 _build/nrf52832_xxaa/main.c.o
  *(COMMON)
- *fill*         0x200008d5        0x3 
+ *fill*         0x200008d6        0x2 
  COMMON         0x200008d8        0x1 _build/nrf52832_xxaa/nrf_drv_uart.c.o
                 0x200008d8                nrf_drv_uart_use_easy_dma
                 0x200008dc                . = ALIGN (0x4)
@@ -5388,8 +5391,8 @@ END GROUP
                 0x20010000                PROVIDE (__stack = __StackTop)
                 0x00000001                ASSERT ((__StackLimit >= __HeapLimit), region RAM overflowed with stack)
                 0x00000088                DataInitFlashUsed = (__bss_start__ - __data_start__)
-                0x000042b0                CodeFlashUsed = (__etext - ORIGIN (FLASH))
-                0x00004338                TotalFlashUsed = (CodeFlashUsed + DataInitFlashUsed)
+                0x00004350                CodeFlashUsed = (__etext - ORIGIN (FLASH))
+                0x000043d8                TotalFlashUsed = (CodeFlashUsed + DataInitFlashUsed)
                 0x00000001                ASSERT ((TotalFlashUsed <= LENGTH (FLASH)), region FLASH overflowed with .data and user data)
 OUTPUT(_build/nrf52832_xxaa.out elf32-littlearm)
 LOAD linker stubs
@@ -5515,7 +5518,7 @@ LOAD linker stubs
  .comment       0x0000004c       0x4d _build/nrf52832_xxaa/main.c.o
  .comment       0x0000004c       0x4d _build/nrf52832_xxaa/system_nrf52.c.o
 
-.debug_line     0x00000000    0x1c126
+.debug_line     0x00000000    0x1c1a5
  .debug_line    0x00000000       0x8a _build/nrf52832_xxaa/gcc_startup_nrf52.S.o
  .debug_line    0x0000008a      0x909 _build/nrf52832_xxaa/nrf_log_backend_serial.c.o
  .debug_line    0x00000993      0xc42 _build/nrf52832_xxaa/nrf_log_backend_uart.c.o
@@ -5544,10 +5547,10 @@ LOAD linker stubs
  .debug_line    0x0001616e      0x9a4 _build/nrf52832_xxaa/nrfx_prs.c.o
  .debug_line    0x00016b12     0x1e96 _build/nrf52832_xxaa/nrfx_uart.c.o
  .debug_line    0x000189a8     0x1d72 _build/nrf52832_xxaa/nrfx_uarte.c.o
- .debug_line    0x0001a71a     0x10a2 _build/nrf52832_xxaa/main.c.o
- .debug_line    0x0001b7bc      0x96a _build/nrf52832_xxaa/system_nrf52.c.o
+ .debug_line    0x0001a71a     0x1121 _build/nrf52832_xxaa/main.c.o
+ .debug_line    0x0001b83b      0x96a _build/nrf52832_xxaa/system_nrf52.c.o
 
-.debug_info     0x00000000    0x33d0d
+.debug_info     0x00000000    0x33e0c
  .debug_info    0x00000000       0x26 _build/nrf52832_xxaa/gcc_startup_nrf52.S.o
  .debug_info    0x00000026     0x11f6 _build/nrf52832_xxaa/nrf_log_backend_serial.c.o
  .debug_info    0x0000121c     0x1c4c _build/nrf52832_xxaa/nrf_log_backend_uart.c.o
@@ -5576,10 +5579,10 @@ LOAD linker stubs
  .debug_info    0x0002731c     0x11aa _build/nrf52832_xxaa/nrfx_prs.c.o
  .debug_info    0x000284c6     0x40b0 _build/nrf52832_xxaa/nrfx_uart.c.o
  .debug_info    0x0002c576     0x3fe2 _build/nrf52832_xxaa/nrfx_uarte.c.o
- .debug_info    0x00030558     0x253e _build/nrf52832_xxaa/main.c.o
- .debug_info    0x00032a96     0x1277 _build/nrf52832_xxaa/system_nrf52.c.o
+ .debug_info    0x00030558     0x263d _build/nrf52832_xxaa/main.c.o
+ .debug_info    0x00032b95     0x1277 _build/nrf52832_xxaa/system_nrf52.c.o
 
-.debug_abbrev   0x00000000     0x71ba
+.debug_abbrev   0x00000000     0x71ac
  .debug_abbrev  0x00000000       0x14 _build/nrf52832_xxaa/gcc_startup_nrf52.S.o
  .debug_abbrev  0x00000014      0x2cc _build/nrf52832_xxaa/nrf_log_backend_serial.c.o
  .debug_abbrev  0x000002e0      0x41d _build/nrf52832_xxaa/nrf_log_backend_uart.c.o
@@ -5608,8 +5611,8 @@ LOAD linker stubs
  .debug_abbrev  0x00005cc9      0x35b _build/nrf52832_xxaa/nrfx_prs.c.o
  .debug_abbrev  0x00006024      0x576 _build/nrf52832_xxaa/nrfx_uart.c.o
  .debug_abbrev  0x0000659a      0x54a _build/nrf52832_xxaa/nrfx_uarte.c.o
- .debug_abbrev  0x00006ae4      0x4b0 _build/nrf52832_xxaa/main.c.o
- .debug_abbrev  0x00006f94      0x226 _build/nrf52832_xxaa/system_nrf52.c.o
+ .debug_abbrev  0x00006ae4      0x4a2 _build/nrf52832_xxaa/main.c.o
+ .debug_abbrev  0x00006f86      0x226 _build/nrf52832_xxaa/system_nrf52.c.o
 
 .debug_aranges  0x00000000      0xa10
  .debug_aranges
@@ -5673,7 +5676,7 @@ LOAD linker stubs
  .debug_aranges
                 0x000009e8       0x28 _build/nrf52832_xxaa/system_nrf52.c.o
 
-.debug_str      0x00000000    0x7fa84
+.debug_str      0x00000000    0x7fb1c
  .debug_str     0x00000000       0x6b _build/nrf52832_xxaa/gcc_startup_nrf52.S.o
  .debug_str     0x0000006b    0x6df99 _build/nrf52832_xxaa/nrf_log_backend_serial.c.o
                               0x6f1dc (size before relaxing)
@@ -5729,12 +5732,12 @@ LOAD linker stubs
                               0x731ca (size before relaxing)
  .debug_str     0x0007d560      0x96e _build/nrf52832_xxaa/nrfx_uarte.c.o
                               0x73652 (size before relaxing)
- .debug_str     0x0007dece     0x1877 _build/nrf52832_xxaa/main.c.o
-                              0x78039 (size before relaxing)
- .debug_str     0x0007f745      0x33f _build/nrf52832_xxaa/system_nrf52.c.o
+ .debug_str     0x0007dece     0x190f _build/nrf52832_xxaa/main.c.o
+                              0x780dd (size before relaxing)
+ .debug_str     0x0007f7dd      0x33f _build/nrf52832_xxaa/system_nrf52.c.o
                               0x5c53c (size before relaxing)
 
-.debug_loc      0x00000000    0x14e2a
+.debug_loc      0x00000000    0x14eda
  .debug_loc     0x00000000      0x186 _build/nrf52832_xxaa/nrf_log_backend_serial.c.o
  .debug_loc     0x00000186      0x334 _build/nrf52832_xxaa/nrf_log_backend_uart.c.o
  .debug_loc     0x000004ba       0x17 _build/nrf52832_xxaa/nrf_log_default_backends.c.o
@@ -5761,9 +5764,9 @@ LOAD linker stubs
  .debug_loc     0x00010ae9      0x10e _build/nrf52832_xxaa/nrfx_prs.c.o
  .debug_loc     0x00010bf7     0x1edc _build/nrf52832_xxaa/nrfx_uart.c.o
  .debug_loc     0x00012ad3     0x1ec2 _build/nrf52832_xxaa/nrfx_uarte.c.o
- .debug_loc     0x00014995      0x495 _build/nrf52832_xxaa/main.c.o
+ .debug_loc     0x00014995      0x545 _build/nrf52832_xxaa/main.c.o
 
-.debug_ranges   0x00000000     0x5a98
+.debug_ranges   0x00000000     0x5ab0
  .debug_ranges  0x00000000       0x28 _build/nrf52832_xxaa/nrf_log_backend_serial.c.o
  .debug_ranges  0x00000028      0x110 _build/nrf52832_xxaa/nrf_log_backend_uart.c.o
  .debug_ranges  0x00000138       0x10 _build/nrf52832_xxaa/nrf_log_default_backends.c.o
@@ -5791,10 +5794,10 @@ LOAD linker stubs
  .debug_ranges  0x000043f0       0x38 _build/nrf52832_xxaa/nrfx_prs.c.o
  .debug_ranges  0x00004428      0x968 _build/nrf52832_xxaa/nrfx_uart.c.o
  .debug_ranges  0x00004d90      0x880 _build/nrf52832_xxaa/nrfx_uarte.c.o
- .debug_ranges  0x00005610      0x280 _build/nrf52832_xxaa/main.c.o
- .debug_ranges  0x00005890      0x208 _build/nrf52832_xxaa/system_nrf52.c.o
+ .debug_ranges  0x00005610      0x298 _build/nrf52832_xxaa/main.c.o
+ .debug_ranges  0x000058a8      0x208 _build/nrf52832_xxaa/system_nrf52.c.o
 
-.debug_macro    0x00000000     0x8506
+.debug_macro    0x00000000     0x8fc0
  .debug_macro   0x00000000      0x371 _build/nrf52832_xxaa/nrf_log_backend_serial.c.o
  .debug_macro   0x00000371       0x16 _build/nrf52832_xxaa/nrf_log_backend_serial.c.o
  .debug_macro   0x00000387       0x22 _build/nrf52832_xxaa/nrf_log_backend_serial.c.o
@@ -5899,15 +5902,16 @@ LOAD linker stubs
  .debug_macro   0x0000744b      0x3eb _build/nrf52832_xxaa/nrfx_uart.c.o
  .debug_macro   0x00007836      0x409 _build/nrf52832_xxaa/nrfx_uarte.c.o
  .debug_macro   0x00007c3f      0x54f _build/nrf52832_xxaa/main.c.o
- .debug_macro   0x0000818e       0x1e _build/nrf52832_xxaa/main.c.o
- .debug_macro   0x000081ac       0x94 _build/nrf52832_xxaa/main.c.o
- .debug_macro   0x00008240       0x10 _build/nrf52832_xxaa/main.c.o
- .debug_macro   0x00008250       0xcc _build/nrf52832_xxaa/main.c.o
- .debug_macro   0x0000831c       0xac _build/nrf52832_xxaa/main.c.o
- .debug_macro   0x000083c8       0x42 _build/nrf52832_xxaa/main.c.o
- .debug_macro   0x0000840a       0xfc _build/nrf52832_xxaa/system_nrf52.c.o
+ .debug_macro   0x0000818e      0xaba _build/nrf52832_xxaa/main.c.o
+ .debug_macro   0x00008c48       0x1e _build/nrf52832_xxaa/main.c.o
+ .debug_macro   0x00008c66       0x94 _build/nrf52832_xxaa/main.c.o
+ .debug_macro   0x00008cfa       0x10 _build/nrf52832_xxaa/main.c.o
+ .debug_macro   0x00008d0a       0xcc _build/nrf52832_xxaa/main.c.o
+ .debug_macro   0x00008dd6       0xac _build/nrf52832_xxaa/main.c.o
+ .debug_macro   0x00008e82       0x42 _build/nrf52832_xxaa/main.c.o
+ .debug_macro   0x00008ec4       0xfc _build/nrf52832_xxaa/system_nrf52.c.o
 
-.debug_frame    0x00000000     0x1c7c
+.debug_frame    0x00000000     0x1c88
  .debug_frame   0x00000000       0x40 _build/nrf52832_xxaa/nrf_log_backend_serial.c.o
  .debug_frame   0x00000040       0xbc _build/nrf52832_xxaa/nrf_log_backend_uart.c.o
  .debug_frame   0x000000fc       0x28 _build/nrf52832_xxaa/nrf_log_default_backends.c.o
@@ -5935,10 +5939,10 @@ LOAD linker stubs
  .debug_frame   0x000017a0       0x4c _build/nrf52832_xxaa/nrfx_prs.c.o
  .debug_frame   0x000017ec      0x18c _build/nrf52832_xxaa/nrfx_uart.c.o
  .debug_frame   0x00001978      0x198 _build/nrf52832_xxaa/nrfx_uarte.c.o
- .debug_frame   0x00001b10       0x70 _build/nrf52832_xxaa/main.c.o
- .debug_frame   0x00001b80       0x40 _build/nrf52832_xxaa/system_nrf52.c.o
- .debug_frame   0x00001bc0       0x28 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-exit.o)
- .debug_frame   0x00001be8       0x2c c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-init.o)
- .debug_frame   0x00001c14       0x28 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-memcpy-stub.o)
- .debug_frame   0x00001c3c       0x20 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-memset.o)
- .debug_frame   0x00001c5c       0x20 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libnosys.a(_exit.o)
+ .debug_frame   0x00001b10       0x7c _build/nrf52832_xxaa/main.c.o
+ .debug_frame   0x00001b8c       0x40 _build/nrf52832_xxaa/system_nrf52.c.o
+ .debug_frame   0x00001bcc       0x28 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-exit.o)
+ .debug_frame   0x00001bf4       0x2c c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-init.o)
+ .debug_frame   0x00001c20       0x28 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x00001c48       0x20 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-memset.o)
+ .debug_frame   0x00001c68       0x20 c:/program files (x86)/gnu arm embedded toolchain/9 2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libnosys.a(_exit.o)
