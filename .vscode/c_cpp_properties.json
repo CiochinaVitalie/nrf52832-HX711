@@ -1,0 +1,27 @@
+{
+    "configurations": [
+        {
+            "name": "nRF52832",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update/arm-none-eabi/include",
+                "C:/nRF5SDK160098a08e2/modules/**",
+                "C:/nRF5SDK160098a08e2/components/**",
+                "C:/nRF5SDK160098a08e2/external/**"
+
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "BOARD_CUSTOM"
+            ],
+            "windowsSdkVersion": "10.0.16299.0",
+            "compilerPath": "C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update/bin/arm-none-eabi-gcc.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}
