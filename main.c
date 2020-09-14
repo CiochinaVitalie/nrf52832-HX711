@@ -44,7 +44,7 @@ static nrf_ppi_channel_t m_ppi_channel1;
 static nrf_ppi_channel_t m_ppi_channel2;
 static nrf_ppi_channel_t ppi_channel3;
 
-static volatile uint32_t m_counter,b_counter,c_counter,buffer;
+static volatile uint32_t m_counter,b_counter,c_counter,buffer,m_sample,m_data;
 
 static void timer0_event_handler(nrf_timer_event_t event_type, void * p_context)
 {
@@ -53,10 +53,12 @@ static void timer0_event_handler(nrf_timer_event_t event_type, void * p_context)
         nrf_drv_timer_pause(&m_timer0);
         m_simple_timer_state = SIMPLE_TIMER_STATE_STOPPED;
         buffer = buffer ^ 0x800000;
-        b_counter=1;        
+        b_counter=1;
+         // nrf_drv_gpiote_in_event_enable(DOUT,true);      
         }
     if(m_counter%2 != 0 && m_counter<=48){
         buffer <<= 1;
+         c_counter++;
             if(nrf_gpio_pin_read(DOUT))buffer++;
     }
 }
@@ -89,6 +91,8 @@ static void lfclk_config(void)
 static void gpiote_evt_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {
     nrf_drv_gpiote_in_event_disable(DOUT);
+    nrf_drv_timer_enable(&m_timer0);
+    m_data=1;
 }
 
 static void led_blinking_setup()
@@ -97,7 +101,7 @@ static void led_blinking_setup()
     ret_code_t err_code;
     nrf_drv_gpiote_out_config_t config = GPIOTE_CONFIG_OUT_TASK_TOGGLE(false);
     /////////////////////////////////////////////////////////////////////////////////
-    nrf_drv_gpiote_in_config_t  gpiote_config = GPIOTE_CONFIG_IN_SENSE_LOTOHI(false);
+    nrf_drv_gpiote_in_config_t  gpiote_config = GPIOTE_CONFIG_IN_SENSE_HITOLO(false);
     nrf_gpio_cfg_input(DOUT, NRF_GPIO_PIN_NOPULL);
     err_code = nrf_drv_gpiote_in_init(DOUT, &gpiote_config, gpiote_evt_handler);
     APP_ERROR_CHECK(err_code);
@@ -118,7 +122,7 @@ static void led_blinking_setup()
     APP_ERROR_CHECK(err_code);
 
     nrf_drv_gpiote_out_task_enable(PD_SCK);
-    nrf_drv_gpiote_in_event_enable(DOUT, true);
+    //nrf_drv_gpiote_in_event_enable(DOUT, true);
 }
 
 /** @brief Function for Timer 0 initialization.
@@ -171,6 +175,33 @@ static void create_timers()
                                 repeated_timer_handler);
     APP_ERROR_CHECK(err_code);
 }
+
+static void hx711_power_down(){
+
+    nrf_gpio_cfg_default(PD_SCK);
+    nrf_gpio_cfg_default(DOUT);
+}
+void hx711_wake_up()
+{
+    nrf_gpio_cfg_output(PD_SCK);
+    nrf_gpio_pin_set(PD_SCK);
+    nrf_gpio_cfg_input(DOUT, NRF_GPIO_PIN_NOPULL);
+}
+void hx711_stop()
+{
+    nrf_drv_gpiote_in_event_disable(DOUT);
+    nrf_gpio_pin_set(PD_SCK); // Must be kept high for >60 us to power down HX711 
+}
+void hx711_start()
+{
+ 
+    NRF_LOG_INFO("Start sampling \n");
+    
+    nrf_gpio_pin_clear(PD_SCK);
+    // Generates interrupt when new sampling is available. 
+    nrf_drv_gpiote_in_event_enable(DOUT, true);
+
+}
 int main(void)
 {
     uint32_t old_val = 0;
@@ -182,6 +213,7 @@ int main(void)
     NRF_LOG_DEFAULT_BACKENDS_INIT();
 
     //ppi_init();
+    hx711_stop();
     nrf_drv_ppi_init();
     nrf_drv_gpiote_init();
     led_blinking_setup();
@@ -192,14 +224,15 @@ int main(void)
     
     timer0_init(); // Timer used to increase m_counter every 100ms.
     // Start clock.
-    nrf_drv_timer_enable(&m_timer0);
+    
     err_code = app_timer_start(m_repeated_timer_id, APP_TIMER_TICKS(10000), NULL);
     APP_ERROR_CHECK(err_code);
+    hx711_start();
 
     while (true)
     {
         //uint32_t counter = m_counter;
-        if (b_counter > 0)
+        if (b_counter > 0 || m_data==1)
         {
             //old_val = counter;
             NRF_LOG_INFO("out impulses %u \n",m_counter);
@@ -208,8 +241,13 @@ int main(void)
             NRF_LOG_FLUSH();
             NRF_LOG_INFO("buffer %u \n",buffer);
             NRF_LOG_FLUSH();
+            NRF_LOG_INFO("m_data %u \n",m_data);
+            NRF_LOG_FLUSH();
             b_counter=0;
             m_counter = 0;
+            c_counter = 0;
+            buffer =0;
+            m_data=0;
         }
         // __SEV();
         // __WFE();
