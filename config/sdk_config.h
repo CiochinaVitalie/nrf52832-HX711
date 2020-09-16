@@ -7,7 +7,40 @@
 #include "app_config.h"
 #endif
 // <h> nRF_Drivers 
+// <q> NRF_LIBUARTE_ASYNC_WITH_APP_TIMER  - nrf_libuarte_async - libUARTE_async library
+ 
 
+#ifndef NRF_LIBUARTE_ASYNC_WITH_APP_TIMER
+#define NRF_LIBUARTE_ASYNC_WITH_APP_TIMER 1
+#endif
+
+// <q> NRF_MEMOBJ_ENABLED  - nrf_memobj - Linked memory allocator module
+ 
+
+#ifndef NRF_MEMOBJ_ENABLED
+#define NRF_MEMOBJ_ENABLED 1
+#endif
+
+// <e> NRF_QUEUE_ENABLED - nrf_queue - Queue module
+//==========================================================
+#ifndef NRF_QUEUE_ENABLED
+#define NRF_QUEUE_ENABLED 1
+#endif
+// <q> NRF_QUEUE_CLI_CMDS  - Enable CLI commands specific to the module
+ 
+
+#ifndef NRF_QUEUE_CLI_CMDS
+#define NRF_QUEUE_CLI_CMDS 0
+#endif
+
+// </e>
+
+// <q> NRF_SORTLIST_ENABLED  - nrf_sortlist - Sorted list
+ 
+
+#ifndef NRF_SORTLIST_ENABLED
+#define NRF_SORTLIST_ENABLED 1
+#endif
 // <e> APP_TIMER_ENABLED - app_timer - Application timer functionality
 //==========================================================
 #ifndef APP_TIMER_ENABLED
@@ -1241,6 +1274,21 @@
 #define UART0_CONFIG_USE_EASY_DMA 1
 #endif
 
+
+#ifndef APP_FIFO_ENABLED
+#define APP_FIFO_ENABLED 1
+#endif
+// <e> APP_UART_ENABLED - app_uart - UART driver
+//==========================================================
+// <e> APP_UART_ENABLED - app_uart - UART driver
+//==========================================================
+#ifndef APP_UART_ENABLED
+#define APP_UART_ENABLED 1
+#endif
+
+#ifndef APP_UART_DRIVER_INSTANCE
+#define APP_UART_DRIVER_INSTANCE 0
+#endif
 // </e>
 
 // </e>
@@ -1344,6 +1392,32 @@
 #ifndef NRF_FPRINTF_DOUBLE_ENABLED
 #define NRF_FPRINTF_DOUBLE_ENABLED 0
 #endif
+// </h> 
+//==========================================================
+
+// <h> nrf_libuarte_drv - libUARTE library
+
+//==========================================================
+// <q> NRF_LIBUARTE_DRV_HWFC_ENABLED  - Enable HWFC support in the driver
+ 
+
+#ifndef NRF_LIBUARTE_DRV_HWFC_ENABLED
+#define NRF_LIBUARTE_DRV_HWFC_ENABLED 0
+#endif
+
+// <q> NRF_LIBUARTE_DRV_UARTE0  - UARTE0 instance
+ 
+
+#ifndef NRF_LIBUARTE_DRV_UARTE0
+#define NRF_LIBUARTE_DRV_UARTE0 1
+#endif
+
+// <q> NRF_LIBUARTE_DRV_UARTE1  - UARTE1 instance
+ 
+
+#ifndef NRF_LIBUARTE_DRV_UARTE1
+#define NRF_LIBUARTE_DRV_UARTE1 0
+#endif
 
 // </h> 
 //==========================================================
@@ -1392,7 +1466,7 @@
 #ifndef NRF_LOG_BACKEND_UART_ENABLED
 #define NRF_LOG_BACKEND_UART_ENABLED 1
 #endif
-// <o> NRF_LOG_BACKEND_UART_TX_PIN - UART TX pin 
+// // <o> NRF_LOG_BACKEND_UART_TX_PIN - UART TX pin 
 #ifndef NRF_LOG_BACKEND_UART_TX_PIN
 #define NRF_LOG_BACKEND_UART_TX_PIN 6
 #endif

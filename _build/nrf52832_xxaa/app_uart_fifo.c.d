@@ -43,7 +43,42 @@ _build/nrf52832_xxaa/app_uart_fifo.c.o: \
  C:/nRF5SDK160098a08e2/modules/nrfx/mdk/nrf52_name_change.h \
  C:/nRF5SDK160098a08e2/modules/nrfx/mdk/compiler_abstraction.h \
  C:/nRF5SDK160098a08e2/components/libraries/util/sdk_macros.h \
- C:/nRF5SDK160098a08e2/components/libraries/util/nrf_assert.h
+ C:/nRF5SDK160098a08e2/components/libraries/util/nrf_assert.h \
+ C:/nRF5SDK160098a08e2/components/libraries/uart/app_uart.h \
+ C:/nRF5SDK160098a08e2/components/libraries/util/app_util_platform.h \
+ C:/nRF5SDK160098a08e2/components/libraries/util/app_error.h \
+ c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\stdio.h \
+ c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\lib\gcc\arm-none-eabi\9.3.1\include\stdarg.h \
+ c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\sys\types.h \
+ c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\sys\_pthreadtypes.h \
+ c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\machine\types.h \
+ c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\sys\stdio.h \
+ C:/nRF5SDK160098a08e2/components/libraries/util/app_error_weak.h \
+ C:/nRF5SDK160098a08e2/components/libraries/fifo/app_fifo.h \
+ c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\stdlib.h \
+ c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\machine\stdlib.h \
+ C:/nRF5SDK160098a08e2/integration/nrfx/legacy/nrf_drv_uart.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/nrfx.h \
+ C:/nRF5SDK160098a08e2/integration/nrfx/nrfx_config.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/drivers/nrfx_common.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/mdk/nrf_peripherals.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/mdk/nrf52832_peripherals.h \
+ C:/nRF5SDK160098a08e2/integration/nrfx/nrfx_glue.h \
+ C:/nRF5SDK160098a08e2/integration/nrfx/legacy/apply_old_config.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/soc/nrfx_irqs.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/soc/nrfx_irqs_nrf52832.h \
+ C:/nRF5SDK160098a08e2/components/libraries/util/nrf_assert.h \
+ C:/nRF5SDK160098a08e2/components/libraries/util/app_util.h \
+ C:/nRF5SDK160098a08e2/components/libraries/util/nordic_common.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/soc/nrfx_coredep.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/soc/nrfx_atomic.h \
+ C:/nRF5SDK160098a08e2/components/libraries/util/sdk_errors.h \
+ C:/nRF5SDK160098a08e2/components/libraries/util/sdk_resources.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/drivers/nrfx_errors.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/drivers/include/nrfx_uarte.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_uarte.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/drivers/include/nrfx_uart.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_uart.h
 
 C:/nRF5SDK160098a08e2/components/libraries/util/sdk_common.h:
 
@@ -132,3 +167,73 @@ C:/nRF5SDK160098a08e2/modules/nrfx/mdk/compiler_abstraction.h:
 C:/nRF5SDK160098a08e2/components/libraries/util/sdk_macros.h:
 
 C:/nRF5SDK160098a08e2/components/libraries/util/nrf_assert.h:
+
+C:/nRF5SDK160098a08e2/components/libraries/uart/app_uart.h:
+
+C:/nRF5SDK160098a08e2/components/libraries/util/app_util_platform.h:
+
+C:/nRF5SDK160098a08e2/components/libraries/util/app_error.h:
+
+c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\stdio.h:
+
+c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\lib\gcc\arm-none-eabi\9.3.1\include\stdarg.h:
+
+c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\sys\types.h:
+
+c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\sys\_pthreadtypes.h:
+
+c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\machine\types.h:
+
+c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\sys\stdio.h:
+
+C:/nRF5SDK160098a08e2/components/libraries/util/app_error_weak.h:
+
+C:/nRF5SDK160098a08e2/components/libraries/fifo/app_fifo.h:
+
+c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\stdlib.h:
+
+c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\machine\stdlib.h:
+
+C:/nRF5SDK160098a08e2/integration/nrfx/legacy/nrf_drv_uart.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/nrfx.h:
+
+C:/nRF5SDK160098a08e2/integration/nrfx/nrfx_config.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/drivers/nrfx_common.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/mdk/nrf_peripherals.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/mdk/nrf52832_peripherals.h:
+
+C:/nRF5SDK160098a08e2/integration/nrfx/nrfx_glue.h:
+
+C:/nRF5SDK160098a08e2/integration/nrfx/legacy/apply_old_config.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/soc/nrfx_irqs.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/soc/nrfx_irqs_nrf52832.h:
+
+C:/nRF5SDK160098a08e2/components/libraries/util/nrf_assert.h:
+
+C:/nRF5SDK160098a08e2/components/libraries/util/app_util.h:
+
+C:/nRF5SDK160098a08e2/components/libraries/util/nordic_common.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/soc/nrfx_coredep.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/soc/nrfx_atomic.h:
+
+C:/nRF5SDK160098a08e2/components/libraries/util/sdk_errors.h:
+
+C:/nRF5SDK160098a08e2/components/libraries/util/sdk_resources.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/drivers/nrfx_errors.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/drivers/include/nrfx_uarte.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_uarte.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/drivers/include/nrfx_uart.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_uart.h:

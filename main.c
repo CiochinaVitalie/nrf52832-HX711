@@ -20,12 +20,14 @@
 #include "nrf_rtc.h"
 #include "nrf_drv_rtc.h"
 #include "nrf_drv_clock.h"
-
+#include "lib_uarte.h"
+#include "temp.h"
+#include <bsp.h>
 #include "app_timer.h"
 
 #define PD_SCK                    28    
 #define DOUT                      31    
-///////////////////////////////////////////////////
+
 typedef enum
 {
     SIMPLE_TIMER_STATE_IDLE = 0,
@@ -195,60 +197,86 @@ void hx711_stop()
 void hx711_start()
 {
  
-    NRF_LOG_INFO("Start sampling \n");
+   // NRF_LOG_INFO("Start sampling \n");
     
     nrf_gpio_pin_clear(PD_SCK);
     // Generates interrupt when new sampling is available. 
     nrf_drv_gpiote_in_event_enable(DOUT, true);
 
 }
+
 int main(void)
 {
-    uint32_t old_val = 0;
+    // uint32_t old_val = 0;
     uint32_t err_code;
-
+    // int32_t volatile temp;
     err_code = NRF_LOG_INIT(NULL);
     APP_ERROR_CHECK(err_code);
 
     NRF_LOG_DEFAULT_BACKENDS_INIT();
 
-    //ppi_init();
-    hx711_stop();
-    nrf_drv_ppi_init();
-    nrf_drv_gpiote_init();
-    led_blinking_setup();
-    leds_config();
+    bsp_board_init(BSP_INIT_LEDS);
+    
+    // ret_code_t ret = nrf_drv_clock_init();
+    // APP_ERROR_CHECK(ret);
+    // nrf_drv_clock_lfclk_request(NULL);
+
+    // ret_code_t err_code = NRF_LOG_INIT(app_timer_cnt_get);
+    // APP_ERROR_CHECK(err_code);
+
+    // NRF_LOG_DEFAULT_BACKENDS_INIT();
+    // hx711_stop();
+    // nrf_drv_ppi_init();
+    // nrf_drv_gpiote_init();
+    // led_blinking_setup();
+    // leds_config();
     lfclk_config();
     app_timer_init();
     create_timers();
     
-    timer0_init(); // Timer used to increase m_counter every 100ms.
+    //timer0_init(); // Timer used to increase m_counter every 100ms.
     // Start clock.
     
     err_code = app_timer_start(m_repeated_timer_id, APP_TIMER_TICKS(10000), NULL);
     APP_ERROR_CHECK(err_code);
-    hx711_start();
+    NRF_LOG_INFO("Temperature example started.");
+   // hx711_start();
+////////////////////////////////////////////////////////////
 
+    // init_libuarte();
+///////////////////////////////////////////////////////////
     while (true)
     {
         //uint32_t counter = m_counter;
-        if (b_counter > 0 || m_data==1)
-        {
-            //old_val = counter;
-            NRF_LOG_INFO("out impulses %u \n",m_counter);
-            NRF_LOG_FLUSH();
-            NRF_LOG_INFO("imp recieve %u \n",c_counter);
-            NRF_LOG_FLUSH();
-            NRF_LOG_INFO("buffer %u \n",buffer);
-            NRF_LOG_FLUSH();
-            NRF_LOG_INFO("m_data %u \n",m_data);
-            NRF_LOG_FLUSH();
-            b_counter=0;
-            m_counter = 0;
-            c_counter = 0;
-            buffer =0;
-            m_data=0;
-        }
+        // if (b_counter > 0 || m_data==1)
+        // {
+        //     //old_val = counter;
+        //     NRF_LOG_INFO("out impulses %u \n",m_counter);
+        //     NRF_LOG_FLUSH();
+        //     NRF_LOG_INFO("imp recieve %u \n",c_counter);
+        //     NRF_LOG_FLUSH();
+        //     NRF_LOG_INFO("buffer %u \n",buffer);
+        //     NRF_LOG_FLUSH();
+        //     NRF_LOG_INFO("m_data %u \n",m_data);
+        //     NRF_LOG_FLUSH();
+        //     b_counter=0;
+        //     m_counter = 0;
+        //     c_counter = 0;
+        //     buffer =0;
+        //     m_data=0;
+        // }
+// NRF_TEMP->TASKS_START = 1;
+//         while (NRF_TEMP->EVENTS_DATARDY == 0)
+//         {
+//             // Do nothing.
+//         }
+//         NRF_TEMP->EVENTS_DATARDY = 0;
+//         temp = (nrf_temp_read() / 4);
+//         NRF_TEMP->TASKS_STOP = 1;
+
+        NRF_LOG_FLUSH();
+        //printf("privet \n");
+        nrf_delay_ms(1000);
         // __SEV();
         // __WFE();
         // __WFE();

@@ -109,7 +109,14 @@ _build/nrf52832_xxaa/main.c.o: main.c \
  C:/nRF5SDK160098a08e2/modules/nrfx/drivers/include/nrfx_clock.h \
  C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_clock.h \
  C:/nRF5SDK160098a08e2/modules/nrfx/drivers/include/nrfx_power_clock.h \
- C:/nRF5SDK160098a08e2/components/libraries/timer/app_timer.h
+ lib/lib_uarte.h \
+ C:/nRF5SDK160098a08e2/components/libraries/queue/nrf_queue.h \
+ C:/nRF5SDK160098a08e2/components/libraries/libuarte/nrf_libuarte_async.h \
+ C:/nRF5SDK160098a08e2/components/libraries/libuarte/nrf_libuarte_drv.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_uarte.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_uarte.h \
+ C:/nRF5SDK160098a08e2/components/libraries/timer/app_timer.h lib/temp.h \
+ C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_temp.h
 
 c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\lib\gcc\arm-none-eabi\9.3.1\include\stdint.h:
 
@@ -335,4 +342,20 @@ C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_clock.h:
 
 C:/nRF5SDK160098a08e2/modules/nrfx/drivers/include/nrfx_power_clock.h:
 
+lib/lib_uarte.h:
+
+C:/nRF5SDK160098a08e2/components/libraries/queue/nrf_queue.h:
+
+C:/nRF5SDK160098a08e2/components/libraries/libuarte/nrf_libuarte_async.h:
+
+C:/nRF5SDK160098a08e2/components/libraries/libuarte/nrf_libuarte_drv.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_uarte.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_uarte.h:
+
 C:/nRF5SDK160098a08e2/components/libraries/timer/app_timer.h:
+
+lib/temp.h:
+
+C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_temp.h:

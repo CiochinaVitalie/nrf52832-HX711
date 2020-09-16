@@ -43,7 +43,10 @@ _build/nrf52832_xxaa/app_fifo.c.o: \
  C:/nRF5SDK160098a08e2/modules/nrfx/mdk/nrf52_name_change.h \
  C:/nRF5SDK160098a08e2/modules/nrfx/mdk/compiler_abstraction.h \
  C:/nRF5SDK160098a08e2/components/libraries/util/sdk_macros.h \
- C:/nRF5SDK160098a08e2/components/libraries/util/nrf_assert.h
+ C:/nRF5SDK160098a08e2/components/libraries/util/nrf_assert.h \
+ C:/nRF5SDK160098a08e2/components/libraries/fifo/app_fifo.h \
+ c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\stdlib.h \
+ c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\machine\stdlib.h
 
 C:/nRF5SDK160098a08e2/components/libraries/util/sdk_common.h:
 
@@ -132,3 +135,9 @@ C:/nRF5SDK160098a08e2/modules/nrfx/mdk/compiler_abstraction.h:
 C:/nRF5SDK160098a08e2/components/libraries/util/sdk_macros.h:
 
 C:/nRF5SDK160098a08e2/components/libraries/util/nrf_assert.h:
+
+C:/nRF5SDK160098a08e2/components/libraries/fifo/app_fifo.h:
+
+c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\stdlib.h:
+
+c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\arm-none-eabi\include\machine\stdlib.h:
