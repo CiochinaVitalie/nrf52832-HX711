@@ -116,7 +116,8 @@ _build/nrf52832_xxaa/main.c.o: main.c \
  C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_uarte.h \
  C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_uarte.h \
  C:/nRF5SDK160098a08e2/components/libraries/timer/app_timer.h lib/temp.h \
- C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_temp.h
+ C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_temp.h \
+ C:/nRF5SDK160098a08e2/external/cJSON/cJSON.h
 
 c:\program\ files\ (x86)\gnu\ arm\ embedded\ toolchain\9\ 2020-q2-update\lib\gcc\arm-none-eabi\9.3.1\include\stdint.h:
 
@@ -359,3 +360,5 @@ C:/nRF5SDK160098a08e2/components/libraries/timer/app_timer.h:
 lib/temp.h:
 
 C:/nRF5SDK160098a08e2/modules/nrfx/hal/nrf_temp.h:
+
+C:/nRF5SDK160098a08e2/external/cJSON/cJSON.h:

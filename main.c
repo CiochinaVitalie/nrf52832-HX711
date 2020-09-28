@@ -24,6 +24,7 @@
 #include "temp.h"
 #include <bsp.h>
 #include "app_timer.h"
+#include "cJSON.h"
 
 #define PD_SCK                    28    
 #define DOUT                      31    
@@ -247,6 +248,21 @@ int main(void)
 ///////////////////////////////////////////////////////////
     while (true)
     {
+        cJSON *monitor_json = cJSON_Parse("{\"age\":25}");
+        
+        
+        if (monitor_json == NULL)
+    {
+        const char *error_ptr = cJSON_GetErrorPtr();
+        if (error_ptr != NULL)
+        {
+            fprintf(stderr, "Error before: %s\n", error_ptr);
+        }
+        
+    }
+    else NRF_LOG_INFO("Data OK !!!");
+    cJSON_Delete(monitor_json);
+
         //uint32_t counter = m_counter;
         // if (b_counter > 0 || m_data==1)
         // {
@@ -276,7 +292,7 @@ int main(void)
 
         NRF_LOG_FLUSH();
         //printf("privet \n");
-        nrf_delay_ms(1000);
+        nrf_delay_ms(2000);
         // __SEV();
         // __WFE();
         // __WFE();

@@ -69,6 +69,7 @@ INC_FOLDERS += \
   $(SDK_ROOT)/modules/nrfx/mdk \
   $(PROJ_DIR) \
   $(SDK_ROOT)/external/segger_rtt \
+  $(SDK_ROOT)/external/cJSON \
   $(SDK_ROOT)/external \
   $(SDK_ROOT)/components/libraries/strerror \
   $(SDK_ROOT)/components/toolchain/cmsis/include \
