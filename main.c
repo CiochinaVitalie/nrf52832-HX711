@@ -24,11 +24,12 @@
 #include "temp.h"
 #include <bsp.h>
 #include "app_timer.h"
-#include "cJSON.h"
 
-#define PD_SCK                    28    
-#define DOUT                      31    
-
+#define PD_SCK                    28
+#define DOUT                      31
+    
+#define NUM                       10
+ 
 typedef enum
 {
     SIMPLE_TIMER_STATE_IDLE = 0,
@@ -37,32 +38,45 @@ typedef enum
     SIMPLE_TIMER_STATE_STARTED
 }simple_timer_states_t;
 
-
-//////////////////////////////////////////////////
+APP_TIMER_DEF(m_repeated_timer_id);
 const nrf_drv_rtc_t rtc = NRF_DRV_RTC_INSTANCE(0);
 static const nrf_drv_timer_t m_timer0 = NRF_DRV_TIMER_INSTANCE(0);
-static simple_timer_states_t              m_simple_timer_state       = SIMPLE_TIMER_STATE_IDLE;
+static simple_timer_states_t m_simple_timer_state = SIMPLE_TIMER_STATE_IDLE;
 
 static nrf_ppi_channel_t m_ppi_channel1;
-static nrf_ppi_channel_t m_ppi_channel2;
-static nrf_ppi_channel_t ppi_channel3;
 
-static volatile uint32_t m_counter,b_counter,c_counter,buffer,m_sample,m_data;
+
+static volatile uint32_t m_counter,b_counter,c_counter,buffer, c_data;
+
+////////////////////////////////////////////////////////////////////
+
+void hx711_stop()
+{
+    nrf_drv_gpiote_in_event_disable(DOUT);
+    nrf_gpio_pin_set(PD_SCK); 
+}
+void hx711_start()
+{
+    nrf_gpio_pin_clear(PD_SCK);
+    nrf_drv_gpiote_in_event_enable(DOUT, true);
+}
+//////////////////////////////////////////////////
 
 static void timer0_event_handler(nrf_timer_event_t event_type, void * p_context)
 {
     ++m_counter;
     if(m_counter==50){
-        nrf_drv_timer_pause(&m_timer0);
+        nrf_drv_timer_disable(&m_timer0);
         m_simple_timer_state = SIMPLE_TIMER_STATE_STOPPED;
         buffer = buffer ^ 0x800000;
         b_counter=1;
-         // nrf_drv_gpiote_in_event_enable(DOUT,true);      
+        hx711_stop();
+;   
         }
     if(m_counter%2 != 0 && m_counter<=48){
-        buffer <<= 1;
-         c_counter++;
-            if(nrf_gpio_pin_read(DOUT))buffer++;
+        buffer <<= 1;       
+        c_counter++;
+        if(nrf_gpio_pin_read(DOUT))buffer++;
     }
 }
 
@@ -86,7 +100,6 @@ static void lfclk_config(void)
 {
     ret_code_t err_code = nrf_drv_clock_init();
     APP_ERROR_CHECK(err_code);
-
     nrf_drv_clock_lfclk_request(NULL);
 }
 
@@ -95,37 +108,36 @@ static void gpiote_evt_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t a
 {
     nrf_drv_gpiote_in_event_disable(DOUT);
     nrf_drv_timer_enable(&m_timer0);
-    m_data=1;
 }
 
-static void led_blinking_setup()
+static void modules_setup()
 {
 
     ret_code_t err_code;
     nrf_drv_gpiote_out_config_t config = GPIOTE_CONFIG_OUT_TASK_TOGGLE(false);
     /////////////////////////////////////////////////////////////////////////////////
-    nrf_drv_gpiote_in_config_t  gpiote_config = GPIOTE_CONFIG_IN_SENSE_HITOLO(false);
+    nrf_drv_gpiote_in_config_t  gpiote_config = GPIOTE_CONFIG_IN_SENSE_HITOLO(true);
     nrf_gpio_cfg_input(DOUT, NRF_GPIO_PIN_NOPULL);
+    //nrf_gpio_cfg_input(CK_Pin, GPIO_PIN_CNF_PULL_Pullup);
     err_code = nrf_drv_gpiote_in_init(DOUT, &gpiote_config, gpiote_evt_handler);
     APP_ERROR_CHECK(err_code);
     ////////////////////////////////////////////////////////////////////////////////
     err_code = nrf_drv_gpiote_out_init(PD_SCK, &config);
     APP_ERROR_CHECK(err_code);
 
-    err_code = nrf_drv_ppi_channel_alloc(&ppi_channel3);
+    err_code = nrf_drv_ppi_channel_alloc(&m_ppi_channel1);
     APP_ERROR_CHECK(err_code);
 
-    err_code = nrf_drv_ppi_channel_assign(ppi_channel3,
+    err_code = nrf_drv_ppi_channel_assign(m_ppi_channel1,
                                             nrf_drv_timer_event_address_get(&m_timer0, NRF_TIMER_EVENT_COMPARE0),
                                             nrf_drv_gpiote_out_task_addr_get(PD_SCK));
     APP_ERROR_CHECK(err_code);
 
 
-    err_code = nrf_drv_ppi_channel_enable(ppi_channel3);
+    err_code = nrf_drv_ppi_channel_enable(m_ppi_channel1);
     APP_ERROR_CHECK(err_code);
 
     nrf_drv_gpiote_out_task_enable(PD_SCK);
-    //nrf_drv_gpiote_in_event_enable(DOUT, true);
 }
 
 /** @brief Function for Timer 0 initialization.
@@ -150,17 +162,15 @@ static void timer0_init(void)
 }
 
 
-/**
- * @brief Function for application main entry.
- */
-APP_TIMER_DEF(m_repeated_timer_id);
 /**@brief Timeout handler for the repeated timer.
  */
 static void repeated_timer_handler(void * p_context)
 {
     nrf_drv_gpiote_out_toggle(LED_2);
     if(m_simple_timer_state == SIMPLE_TIMER_STATE_STOPPED){
-        nrf_drv_timer_resume(&m_timer0);
+        //nrf_drv_timer_resume(&m_timer0);
+        //hx711_start();
+        hx711_start();
         nrf_drv_gpiote_out_toggle(LED_1);
         m_simple_timer_state = SIMPLE_TIMER_STATE_STARTED;
     } 
@@ -179,123 +189,55 @@ static void create_timers()
     APP_ERROR_CHECK(err_code);
 }
 
-static void hx711_power_down(){
-
-    nrf_gpio_cfg_default(PD_SCK);
-    nrf_gpio_cfg_default(DOUT);
-}
-void hx711_wake_up()
-{
-    nrf_gpio_cfg_output(PD_SCK);
-    nrf_gpio_pin_set(PD_SCK);
-    nrf_gpio_cfg_input(DOUT, NRF_GPIO_PIN_NOPULL);
-}
-void hx711_stop()
-{
-    nrf_drv_gpiote_in_event_disable(DOUT);
-    nrf_gpio_pin_set(PD_SCK); // Must be kept high for >60 us to power down HX711 
-}
-void hx711_start()
-{
- 
-   // NRF_LOG_INFO("Start sampling \n");
-    
-    nrf_gpio_pin_clear(PD_SCK);
-    // Generates interrupt when new sampling is available. 
-    nrf_drv_gpiote_in_event_enable(DOUT, true);
-
-}
+////////////////////////////////////////////////////////////////////////////////////////////
 
 int main(void)
 {
-    // uint32_t old_val = 0;
     uint32_t err_code;
-    // int32_t volatile temp;
     err_code = NRF_LOG_INIT(NULL);
     APP_ERROR_CHECK(err_code);
 
     NRF_LOG_DEFAULT_BACKENDS_INIT();
 
     bsp_board_init(BSP_INIT_LEDS);
-    
-    // ret_code_t ret = nrf_drv_clock_init();
-    // APP_ERROR_CHECK(ret);
-    // nrf_drv_clock_lfclk_request(NULL);
-
-    // ret_code_t err_code = NRF_LOG_INIT(app_timer_cnt_get);
-    // APP_ERROR_CHECK(err_code);
-
-    // NRF_LOG_DEFAULT_BACKENDS_INIT();
-    // hx711_stop();
-    // nrf_drv_ppi_init();
-    // nrf_drv_gpiote_init();
-    // led_blinking_setup();
-    // leds_config();
+    hx711_stop();
+    nrf_drv_ppi_init();
+    nrf_drv_gpiote_init();
+    modules_setup();
+    leds_config();
     lfclk_config();
     app_timer_init();
     create_timers();
     
-    //timer0_init(); // Timer used to increase m_counter every 100ms.
+    timer0_init(); // Timer used to increase m_counter every 100ms.
     // Start clock.
     
     err_code = app_timer_start(m_repeated_timer_id, APP_TIMER_TICKS(10000), NULL);
     APP_ERROR_CHECK(err_code);
-    NRF_LOG_INFO("Temperature example started.");
-   // hx711_start();
-////////////////////////////////////////////////////////////
+    hx711_start();
 
-    // init_libuarte();
-///////////////////////////////////////////////////////////
     while (true)
     {
-        cJSON *monitor_json = cJSON_Parse("{\"age\":25}");
-        
-        
-        if (monitor_json == NULL)
-    {
-        const char *error_ptr = cJSON_GetErrorPtr();
-        if (error_ptr != NULL)
+  
+        if (b_counter > 0 )
         {
-            fprintf(stderr, "Error before: %s\n", error_ptr);
+         
+            NRF_LOG_INFO("Total events %u \n",m_counter);
+            NRF_LOG_FLUSH();
+            NRF_LOG_INFO("Total impulses %u \n",c_counter +1);
+            NRF_LOG_FLUSH();
+            NRF_LOG_INFO("Data from HX711 %u \n",buffer);
+            NRF_LOG_FLUSH();
+            b_counter=0;
+            m_counter = 0;
+            c_counter = 0;
+            buffer =0;
+
         }
-        
-    }
-    else NRF_LOG_INFO("Data OK !!!");
-    cJSON_Delete(monitor_json);
-
-        //uint32_t counter = m_counter;
-        // if (b_counter > 0 || m_data==1)
-        // {
-        //     //old_val = counter;
-        //     NRF_LOG_INFO("out impulses %u \n",m_counter);
-        //     NRF_LOG_FLUSH();
-        //     NRF_LOG_INFO("imp recieve %u \n",c_counter);
-        //     NRF_LOG_FLUSH();
-        //     NRF_LOG_INFO("buffer %u \n",buffer);
-        //     NRF_LOG_FLUSH();
-        //     NRF_LOG_INFO("m_data %u \n",m_data);
-        //     NRF_LOG_FLUSH();
-        //     b_counter=0;
-        //     m_counter = 0;
-        //     c_counter = 0;
-        //     buffer =0;
-        //     m_data=0;
-        // }
-// NRF_TEMP->TASKS_START = 1;
-//         while (NRF_TEMP->EVENTS_DATARDY == 0)
-//         {
-//             // Do nothing.
-//         }
-//         NRF_TEMP->EVENTS_DATARDY = 0;
-//         temp = (nrf_temp_read() / 4);
-//         NRF_TEMP->TASKS_STOP = 1;
-
-        NRF_LOG_FLUSH();
-        //printf("privet \n");
+        //NRF_LOG_INFO("CHECK OK !\n");
+       // NRF_LOG_FLUSH();
         nrf_delay_ms(2000);
-        // __SEV();
-        // __WFE();
-        // __WFE();
+
     }
 }
 
